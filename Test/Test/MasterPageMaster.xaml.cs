@@ -31,6 +31,7 @@ namespace Test
                     new MasterPageMenuItem { Id = 1, Title = "Partenaire", Icon ="@drawable/image.png", TargetType=typeof(MainPage) },
                     new MasterPageMenuItem { Id = 2, Title = "Gestion et administration", Icon ="@drawable/image.png", TargetType=typeof(MainPage) },
                     new MasterPageMenuItem { Id = 3, Title = "Nous contacter", Icon ="@drawable/image.png" , TargetType=typeof(MainPage)},
+                    new MasterPageMenuItem { Id = 4, Title = "Regle generale", Icon ="@drawable/image.png" , TargetType=typeof(MainPage)},
                 });
             }
             
