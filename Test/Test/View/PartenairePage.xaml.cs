@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace Test
+namespace Test.View
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MasterPageDetail : ContentPage
+    public partial class PartenairePage : ContentPage
     {
-        public MasterPageDetail()
+        public PartenairePage()
         {
             InitializeComponent();
         }

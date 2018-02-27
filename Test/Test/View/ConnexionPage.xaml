@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Test.View.ConnexionPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Entry Placeholder="Login"
+                   Text="{Binding Login}"
+                   StyleId="loginentry"
+                   VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand"/>
+            <Entry Placeholder="PassWord"
+                   Text="{Binding Password}"
+                   IsPassword="True"
+                   StyleId="passwordentry"
+                   VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand"/>
+            <Button Text="Connect"
+                    VerticalOptions="CenterAndExpand" 
+                    HorizontalOptions="CenterAndExpand"
+                    Clicked="Button_Connect_Clicked"/>
+            <Button Text="Sign Up"
+                    VerticalOptions="CenterAndExpand" 
+                    HorizontalOptions="CenterAndExpand"
+                    Clicked="Button_Sign_Up_Clicked"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

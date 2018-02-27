@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Xamarin.Forms;
 
-namespace Test
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+
+namespace Test.View
 {
-    public partial class MainPage : ContentPage
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class CartePage : ContentPage
     {
-        public MainPage()
+        public CartePage()
         {
             InitializeComponent();
         }
