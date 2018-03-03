@@ -25,7 +25,7 @@ namespace Test
         }
         private void Button_CARTE_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new CartePage());
+            Navigation.PushAsync(CartePage.GetInstance().Result);
         }
         private void Button_EVENEMENT_Clicked(object sender, EventArgs e)
         {

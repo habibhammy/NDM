@@ -2,6 +2,7 @@
   "dependencies": {
     "Microsoft.NETCore.UniversalWindowsPlatform": "6.0.7",
     "Newtonsoft.Json": "11.0.1",
+    "Xam.Plugin.Connectivity": "3.1.1",
     "Xamarin.Forms": "2.5.0.280555",
     "Xamarin.Forms.Maps": "2.5.0.280555"
   },

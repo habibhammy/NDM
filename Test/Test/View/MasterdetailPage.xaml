@@ -3,9 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Test.View.MasterdetailPage"
              xmlns:pages="clr-namespace:Test.View">
-  
-  <MasterDetailPage.Master>
-    <pages:MasterDetailPageMaster x:Name="MasterPage"/>
+    <MasterDetailPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="AccueilButtonStyle" TargetType="NavigationPage">
+            </Style>
+
+        </ResourceDictionary>
+    </MasterDetailPage.Resources>
+    <MasterDetailPage.Master>
+        <pages:MasterDetailPageMaster x:Name="MasterPage"/>
   </MasterDetailPage.Master>
   <MasterDetailPage.Detail>
     <NavigationPage>

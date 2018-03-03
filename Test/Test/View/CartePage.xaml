@@ -5,9 +5,7 @@
                   Title="Carte">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="CartePage"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

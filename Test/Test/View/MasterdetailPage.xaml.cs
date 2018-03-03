@@ -15,22 +15,28 @@ namespace Test.View
         public MasterdetailPage()
         {
             InitializeComponent();
-            MasterPage.ListView.ItemSelected += ListView_ItemSelected;
-            
+            MasterPage.ListView.ItemSelected += ListView_ItemSelectedAsync;
         }
 
-        private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        private async void ListView_ItemSelectedAsync(object sender, SelectedItemChangedEventArgs e)
         {
             var item = e.SelectedItem as MasterDetailPageMenuItem;
             if (item == null)
                 return;
-            
-            var page = (Page)Activator.CreateInstance(item.TargetType);
-            page.Title = item.Title;
+            if (item.TargetType.Equals(typeof(GererCartePage)))
+            {
+                GererCartePage gcp =await GererCartePage.GetInstance();
+                Detail = new NavigationPage(gcp);
+            }
+            else
+            {
+                
+                var page = (Page)Activator.CreateInstance(item.TargetType);
+                page.Title = item.Title;
+                Detail = new NavigationPage(page);
+            }
 
-            Detail = new NavigationPage(page);
             IsPresented = false;
-
             MasterPage.ListView.SelectedItem = null;
         }
     }

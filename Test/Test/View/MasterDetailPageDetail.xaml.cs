@@ -24,13 +24,16 @@ namespace Test.View
         {
             Navigation.PushAsync(new LeMarchePage());
         }
-        private void Button_CARTE_Clicked(object sender, EventArgs e)
+        private async void Button_CARTE_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new CartePage());
+            CartePage page = await CartePage.GetInstance();
+            await Navigation.PushAsync(page);
         }
         private void Button_EVENEMENT_Clicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new EvenementPage());
         }
+
+        
     }
 }

@@ -10,6 +10,14 @@ namespace Test.Model
     {
         public static Users currentuser;
 
+        public static bool Isadmin()
+        {
+            if (currentuser!=null &&  currentuser.Login.Equals("Admin"))
+                return true;
+
+            return false;
+        }
+
         public static void Initcurrentuser(Users u) => currentuser = u;
     }
 }

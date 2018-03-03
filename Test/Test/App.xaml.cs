@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Test.View;
+﻿using Test.View;
 using Xamarin.Forms;
 
 namespace Test
@@ -12,10 +8,11 @@ namespace Test
         public App()
         {
             InitializeComponent();
-
-             MainPage = new NavigationPage( new ConnexionPage() );
-            //MainPage = new MasterdetailPage();
+                //MainPage = new NavigationPage( new ConnexionPage() );
+                MainPage = new MasterdetailPage();
         }
+
+      
 
         protected override void OnStart()
         {

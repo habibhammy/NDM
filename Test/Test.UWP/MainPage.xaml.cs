@@ -20,7 +20,7 @@ namespace Test.UWP
         public MainPage()
         {
             this.InitializeComponent();
-
+            //Xamarin.FormsMaps.Init("");
             LoadApplication(new Test.App());
         }
     }

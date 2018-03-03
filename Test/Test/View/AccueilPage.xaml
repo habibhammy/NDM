@@ -4,64 +4,181 @@
              xmlns:local="clr-namespace:Test"
              x:Class="Test.AccueilPage"
              Title="Welcome to SHAMANLOR">
-    <ContentPage.Content>
-        <Grid Padding="50">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Image Source="echange.png"
-               Grid.Row="0"
-               Grid.Column="0"
-               Margin="50"
-               Aspect="AspectFit"
-               WidthRequest="50"
-               HeightRequest="50">
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="ContentViewStyle" TargetType="ContentView">
+                <Setter Property="Margin" Value="20"/>
+            </Style>
+            <Style x:Key="FrameStyle" TargetType="Frame">
+                <Setter Property="Padding" Value="0,20,0,0"/>
+                <Setter Property="HeightRequest" Value="300"/>
+                <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
+            </Style>
+            <Style x:Key="ImageStyle" TargetType="Image">
+                <Setter Property="HeightRequest" Value="200"/>
+                <Setter Property="WidthRequest" Value="200"/>
+                <Setter Property="Aspect" Value="AspectFit"/>
+            </Style>
+            <Style x:Key="LabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="25"/>
+                <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
+            </Style>
+            <Style x:Key="BoxViewStyle" TargetType="BoxView">
+                <Setter Property="WidthRequest" Value="600"/>
+                <Setter Property="HeightRequest" Value="20"/>
+                <Setter Property="VerticalOptions" Value="EndAndExpand"/>
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid Padding="50">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <ContentView Grid.Row="0"
+                     Grid.Column="0"
+                     Style="{DynamicResource ContentViewStyle}">
+            <ContentView.GestureRecognizers>
+                <TapGestureRecognizer
                     Tapped="Button_ECHANGE_Clicked"  />
-                </Image.GestureRecognizers>
-            </Image>
-            <Image Source="marche.png"
-               Grid.Row="0"
-               Grid.Column="1"
-               Margin="50"
-               Aspect="AspectFit"
-               WidthRequest="50"
-               HeightRequest="50">
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer
-                    Tapped="Button_LE_MARCHE_Clicked"  />
-                </Image.GestureRecognizers>
-            </Image>
-            <Image Source="carte.png"
-               Grid.Row="1"
-               Grid.Column="0"
-               Margin="50"
-               Aspect="AspectFit"
-               WidthRequest="50"
-               HeightRequest="50">
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer
-                    Tapped="Button_CARTE_Clicked"  />
-                </Image.GestureRecognizers>
-            </Image>
-            <Image Source="event.png"
-               Grid.Row="1"
-               Grid.Column="1"
-               Margin="50"
-               Aspect="AspectFit"
-               WidthRequest="50"
-               HeightRequest="50">
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer
-                    Tapped="Button_EVENEMENT_Clicked"  />
-                </Image.GestureRecognizers>
-            </Image>
-        </Grid>
-    </ContentPage.Content>
+            </ContentView.GestureRecognizers>
+            <Frame  Style="{DynamicResource FrameStyle}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="20" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Image Source="echange.png"
+                           Grid.Row="0"
+                           Grid.Column="0"
+                           Style="{DynamicResource ImageStyle}">
+                    </Image>
+                    <Label Text="Échange"
+                           TextColor="#000000"
+                           Grid.Row="1"
+                           Grid.Column="0"
+                           Style="{DynamicResource LabelStyle}"/>
+                    <BoxView Style="{DynamicResource BoxViewStyle}"
+                             BackgroundColor="#000000"
+                             Grid.Row="2"
+                             Grid.Column="0"/>
+                </Grid>
+            </Frame>
+        </ContentView>
+
+        <ContentView Grid.Row="0"
+                     Grid.Column="1"
+                     Style="{DynamicResource ContentViewStyle}">
+            <ContentView.GestureRecognizers>
+                <TapGestureRecognizer
+                                Tapped="Button_LE_MARCHE_Clicked"  />
+            </ContentView.GestureRecognizers>
+            <Frame  Style="{DynamicResource FrameStyle}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="20" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Image Source="marche.png"
+                           Grid.Row="0"
+                           Grid.Column="0"
+                           Style="{DynamicResource ImageStyle}">
+                    </Image>
+                    <Label Text="Le marché"
+                           TextColor="#9A1212"
+                           Grid.Row="1"
+                           Grid.Column="0"
+                           Style="{DynamicResource LabelStyle}"/>
+                    <BoxView Style="{DynamicResource BoxViewStyle}"
+                             BackgroundColor="#9A1212"
+                             Grid.Row="2"
+                             Grid.Column="0"/>
+                </Grid>
+            </Frame>
+        </ContentView>
+        <ContentView Grid.Row="1"
+                     Grid.Column="0"
+                     Style="{DynamicResource ContentViewStyle}">
+            <ContentView.GestureRecognizers>
+                <TapGestureRecognizer
+                                Tapped="Button_CARTE_Clicked"  />
+            </ContentView.GestureRecognizers>
+            <Frame  Style="{DynamicResource FrameStyle}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="20" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Image Source="carte.png"
+                           Grid.Row="0"
+                           Grid.Column="0"
+                           Style="{DynamicResource ImageStyle}">
+                    </Image>
+                    <Label Text="La carte"
+                           TextColor="#3965B0"
+                           Grid.Row="1"
+                           Grid.Column="0"
+                           Style="{DynamicResource LabelStyle}"/>
+                    <BoxView Style="{DynamicResource BoxViewStyle}"
+                             BackgroundColor="#3965B0"
+                             Grid.Row="2"
+                             Grid.Column="0"/>
+                </Grid>
+            </Frame>
+        </ContentView>
+
+        <ContentView Grid.Row="1"
+                     Grid.Column="1"
+                     Style="{DynamicResource ContentViewStyle}">
+            <ContentView.GestureRecognizers>
+                <TapGestureRecognizer
+                                Tapped="Button_EVENEMENT_Clicked"  />
+            </ContentView.GestureRecognizers>
+            <Frame  Style="{DynamicResource FrameStyle}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="20" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Image Source="event.png"
+                           Grid.Row="0"
+                           Grid.Column="0"
+                           Style="{DynamicResource ImageStyle}">
+                    </Image>
+                    <Label Text="Les évenements"
+                           TextColor="#C223FE"
+                           Grid.Row="1"
+                           Grid.Column="0"
+                           Style="{DynamicResource LabelStyle}"/>
+                    <BoxView Style="{DynamicResource BoxViewStyle}"
+                             BackgroundColor="#C223FE"
+                             Grid.Row="2"
+                             Grid.Column="0"/>
+                </Grid>
+            </Frame>
+        </ContentView>
+    </Grid>
 </ContentPage>
