@@ -1,28 +1,74 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Test.View.ConnexionPage">
+             x:Class="Test.View.ConnexionPage"
+             BackgroundImage="background.png">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="BoxViewStyle" TargetType="BoxView">
+                <Setter Property="WidthRequest" Value="700"/>
+                <Setter Property="HeightRequest" Value="20"/>
+                <Setter Property="VerticalOptions" Value="StartAndExpand"/>
+                <Setter Property="HorizontalOptions" Value="StartAndExpand"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout>
-            <Entry Placeholder="Login"
-                   Text="{Binding Login}"
-                   StyleId="loginentry"
-                   VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand"/>
-            <Entry Placeholder="PassWord"
-                   Text="{Binding Password}"
-                   IsPassword="True"
-                   StyleId="passwordentry"
-                   VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand"/>
-            <Button Text="Connect"
-                    VerticalOptions="CenterAndExpand" 
-                    HorizontalOptions="CenterAndExpand"
-                    Clicked="Button_Connect_Clicked"/>
-            <Button Text="Sign Up"
-                    VerticalOptions="CenterAndExpand" 
-                    HorizontalOptions="CenterAndExpand"
-                    Clicked="Button_Sign_Up_Clicked"/>
-        </StackLayout>
+        <ContentView Padding="0,0,0,50" 
+                     WidthRequest="500"
+                     HeightRequest="500"
+                     VerticalOptions="CenterAndExpand"
+                     HorizontalOptions="CenterAndExpand">
+            <Frame OutlineColor="Accent"
+                   Padding="0,0,0,20">
+                <StackLayout>
+                    <BoxView Style="{DynamicResource BoxViewStyle}"
+                             BackgroundColor="#CEC638"/>
+                    <Image Source="logo.png"
+                           WidthRequest="175"
+                           HeightRequest="175"
+                           VerticalOptions="StartAndExpand" 
+                           HorizontalOptions="CenterAndExpand"/>
+                    <Entry Placeholder="Login"
+                           Text="{Binding Login}"
+                           VerticalOptions="StartAndExpand" 
+                           HorizontalOptions="CenterAndExpand"
+                           WidthRequest="250"
+                           PlaceholderColor="#81610C"
+                           TextColor="#81610C"
+                           />
+                    <Entry Placeholder="PassWord"
+                           Text="{Binding Password}"
+                           IsPassword="True"
+                           VerticalOptions="StartAndExpand" 
+                           HorizontalOptions="CenterAndExpand"
+                           WidthRequest="250"
+                           PlaceholderColor="#81610C"
+                           TextColor="#81610C"
+                           />
+                    <StackLayout Orientation="Horizontal"
+                                 Margin="0,20,0,0">
+                        <Button Text="Connect"
+                                VerticalOptions="EndAndExpand" 
+                                HorizontalOptions="CenterAndExpand"
+                                Clicked="Button_Connect_Clicked"
+                                FontSize="20"
+                                BackgroundColor="#246500"
+                                TextColor="#FFFFFF"
+                                WidthRequest="150"
+                                HeightRequest="50"/>
+                        <Button Text="Sign Up"
+                                VerticalOptions="EndAndExpand" 
+                                HorizontalOptions="CenterAndExpand"
+                                Clicked="Button_Sign_Up_Clicked"
+                                FontSize="20"
+                                BackgroundColor="#246500"
+                                TextColor="#FFFFFF"
+                                WidthRequest="150"
+                                HeightRequest="50"/>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+        </ContentView>
     </ContentPage.Content>
 </ContentPage>

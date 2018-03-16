@@ -13,7 +13,7 @@ namespace Test.ViewModel
 {
     class ConnexionViewModel : INotifyPropertyChanged
     {
-        private string login = "Login";
+        private string login ="Admin";
         public string Login {
             get { return login; }
             set
@@ -23,7 +23,7 @@ namespace Test.ViewModel
             }
         }
 
-        private string password = "Password";
+        private string password = "Admin";
         public string Password
         {
             get { return password; }

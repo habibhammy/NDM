@@ -6,65 +6,94 @@
     <ContentPage.Content>
         <StackLayout>
             <ListView x:Name="listPins"
-              SeparatorVisibility="Default"
-              HasUnevenRows="true"
-              ItemsSource="{Binding Pins}">
+                      SeparatorVisibility="None"
+                      HasUnevenRows="true"
+                      ItemsSource="{Binding Pins}"
+                      IsPullToRefreshEnabled="True">
                 <ListView.Header>
-                    <Grid BackgroundColor="#03A9F4">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="10"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="10"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="10"/>
-                            <RowDefinition Height="10"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="10"/>
-                        </Grid.RowDefinitions>
-                        <Label
-              Grid.Column="1"
-              Grid.Row="2"
-              Text="Listes Des Pins sur la carte"
-              Style="{DynamicResource SubtitleStyle}"/>
-                    </Grid>
+                    <StackLayout Padding="10">
+                        <Button Text="Ajouter"
+                                VerticalOptions="CenterAndExpand" 
+                                HorizontalOptions="CenterAndExpand"
+                                Clicked="Button_Ajouter_Clicked"
+                                FontSize="20"
+                                BackgroundColor="#246500"
+                                TextColor="#FFFFFF"
+                                WidthRequest="150"
+                                HeightRequest="50"/>
+                    </StackLayout>
                 </ListView.Header>
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <ViewCell>
-                            <ViewCell.ContextActions>
-                                <MenuItem Clicked="Delete_Clicked" CommandParameter="{Binding .}"
-                                            IsDestructive="True" Icon="filledtrash.png"/>
-                            </ViewCell.ContextActions>
-                            <StackLayout Padding="15,10" HorizontalOptions="FillAndExpand">
-                                <Label VerticalOptions="FillAndExpand" 
-                                        VerticalTextAlignment="Center" 
-                                        Text="{Binding Titre}" 
-                                        FontSize="24"/>
-                                <Label VerticalOptions="FillAndExpand" 
-                                        VerticalTextAlignment="Center" 
-                                        Text="{Binding Latitude}" 
-                                        FontSize="24"/>
-                                <Label VerticalOptions="FillAndExpand" 
-                                        VerticalTextAlignment="Center" 
-                                        Text="{Binding Longitude}" 
-                                        FontSize="24"/>
-                                <Label VerticalOptions="FillAndExpand" 
-                                        VerticalTextAlignment="Center" 
-                                        Text="{Binding Description}" 
-                                        FontSize="24"/>
-                               <!-- <Image Source="filledtrash.png"
-                                       Margin="50"
-                                       Aspect="AspectFit"     
-                                       WidthRequest="50"
-                                       HeightRequest="50">
-                                    <Image.GestureRecognizers>
-                                        <TapGestureRecognizer
-                                            Command="{Binding BindingContext.TapCommand, Source={x:Reference listPins}"
-                                            CommandParameter="{Binding .}"  />
-                                    </Image.GestureRecognizers>
-                                </Image>-->
-                            </StackLayout>
+                        <ViewCell >
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="500"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <ContentView Padding="5" 
+                                         Margin="0,05,0,05"
+                                         Grid.Column="1"
+                                         Grid.Row="0">
+                                    <Frame OutlineColor="Accent"
+                                       Padding="10">
+                                        <StackLayout Orientation="Horizontal">
+                                            <Image Source="{Binding Image}"
+                                         WidthRequest="50"
+                                         HeightRequest="50" />
+                                            <StackLayout>
+                                                <Label VerticalOptions="FillAndExpand" 
+                                                   VerticalTextAlignment="Center" 
+                                                   Text="{Binding Titre}" 
+                                                   FontSize="24"/>
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label VerticalOptions="FillAndExpand" 
+                                                       VerticalTextAlignment="Center" 
+                                                       Text="Description : " 
+                                                       FontAttributes="Bold"
+                                                       FontSize="18"
+                                                       WidthRequest="110"
+                                                           MinimumWidthRequest="110"/>
+                                                    <Label VerticalOptions="FillAndExpand" 
+                                                       VerticalTextAlignment="Center" 
+                                                       Text="{Binding SomeofDescription}" 
+                                                       FontSize="16"/>
+                                                </StackLayout>
+                                            </StackLayout>
+                                            <StackLayout HorizontalOptions="EndAndExpand">
+                                                <Image Source="{Binding moreminus}"
+                                                   WidthRequest="30"
+                                                   HeightRequest="30" 
+                                                       VerticalOptions="CenterAndExpand">
+                                                    <Image.GestureRecognizers>
+                                                        <TapGestureRecognizer
+                                                                Tapped="More_Clicked"
+                                                            CommandParameter="{Binding .}"/>
+                                                        <!--Command="{Binding BindingContext.TapCommand, Source={x:Reference listPins}"
+                                                                CommandParameter="{Binding .}"-->
+                                                    </Image.GestureRecognizers>
+                                                </Image>
+                                                <Image Source="delete.png"
+                                                   WidthRequest="30"
+                                                   HeightRequest="30"
+                                                       VerticalOptions="CenterAndExpand">
+                                                    <Image.GestureRecognizers>
+                                                        <TapGestureRecognizer
+                                                                Tapped="Delete_Clicked"
+                                                            CommandParameter="{Binding .}"/>
+                                                        <!--Command="{Binding BindingContext.TapCommand, Source={x:Reference listPins}"
+                                                                CommandParameter="{Binding .}"-->
+                                                    </Image.GestureRecognizers>
+                                                </Image>
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </Frame>
+                                </ContentView>
+                            </Grid>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

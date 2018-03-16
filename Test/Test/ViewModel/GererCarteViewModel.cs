@@ -13,16 +13,18 @@ using Xamarin.Forms;
 
 namespace Test.ViewModel
 {
-    class GererCarteViewModel : INotifyPropertyChanged
+    public class GererCarteViewModel : INotifyPropertyChanged
     {
+        private bool firstappear;
+        /*
         private ICommand tapCommand;
         public ICommand TapCommand
         {
             get { return tapCommand; }
         }
-
-        private List<MapsPin> pins ;
-        public List<MapsPin> Pins
+        */
+        private List<MapsPinViewModel> pins ;
+        public List<MapsPinViewModel> Pins
         {
             get { return pins; }
             set
@@ -32,100 +34,73 @@ namespace Test.ViewModel
             }
         }
 
-        private long id;
-        public long Id
-        {
-            get { return id; }
-        }
-
-        private string pintitre;
-        public string Pintitre
-        {
-            get { return pintitre; }
-            set
-            {
-                pintitre = value;
-                RaisePropertyCHanged();
-            }
-        }
-
-        private double longitude;
-        public double Longitude
-        {
-            get { return longitude; }
-            set
-            {
-                longitude = value;
-                RaisePropertyCHanged();
-            }
-        }
-
-        private double latitude;
-        public double Latitude
-        {
-            get { return latitude; }
-            set
-            {
-                latitude = value;
-                RaisePropertyCHanged();
-            }
-        }
-
-
-        private string description;
-        public string Description
-        {
-            get { return description; }
-            set
-            {
-                description = value;
-                RaisePropertyCHanged();
-            }
-        }
         private GererCarteViewModel()
         {
-            tapCommand = new Command<MapsPin>(async (MapsPin pin) => await DeletePinAsync(pin));
+            //tapCommand = new Command<MapsPinViewModel>(async (MapsPinViewModel pin) => await DeletePinAsync(pin));
             
         }
 
         public static async Task<GererCarteViewModel> GetInstanceAsync()
         {
             GererCarteViewModel gcvm = new GererCarteViewModel();
-            await gcvm.GetPinsAsync();
+            await gcvm.RefreshlistAsync();
+            gcvm.firstappear = true;
             return gcvm;
         }
 
         private async Task GetPinsAsync()
         {
-            pins = await HttpService.GetHttpService().GetAllMapsPinsAsync();
+            List<MapsPin>ps = await HttpService.GetHttpService().GetAllMapsPinsAsync();
+            pins = new List<MapsPinViewModel>();
+            foreach (MapsPin p in ps)
+            {
+                MapsPinViewModel pi = new MapsPinViewModel
+                {
+                    Image = "pin" + ((p.Id % 5) + 1) + ".png",
+                    SomeofDescription = p.Description.Substring(0, 5) + "...",
+                    moreminus = "more.png",
+                    Id = p.Id,
+                    Titre = p.Titre,
+                    Latitude = p.Latitude,
+                    Longitude = p.Longitude,
+                    Description = p.Description
+                };
+                pins.Add(pi);
+            }
+               
+
         }
 
         public async Task AddPin()
         {
-            MapsPin p = new MapsPin
+            MapsPinViewModel p = new MapsPinViewModel
             {
-                Titre = Pintitre,
-                Latitude = Latitude,
-                Longitude = Longitude,
-                Description = Description
+                //Titre = Pintitre,
+                //Latitude = Latitude,
+                //Longitude = Longitude,
+                //Description = Description
             };
             Pins.Add(p);
-            await HttpService.GetHttpService().AddMapsPinAsync(p);
+            await HttpService.GetHttpService().AddMapsPinAsync(p.GetMapPin());
             RaisePropertyCHanged();
         }
 
-        public async Task DeletePinAsync(MapsPin p)
+        public async Task<bool> DeletePinAsync(MapsPinViewModel p)
         {
             pins.Remove(p);
             try
             {
-                await HttpService.GetHttpService().DeleteMapsPinAsync(p);
+                await HttpService.GetHttpService().DeleteMapsPinAsync(p.GetMapPin());
+                RaisePropertyCHanged();
+                return true;
             }catch(Exception ex)
             {
                 MessagingCenter.Send<GererCarteViewModel, string>(this, "Error 500", "Cet item a déjà était supprimé");
+                RaisePropertyCHanged();
+                return false;
             }
            
-            RaisePropertyCHanged();
+            
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -136,6 +111,18 @@ namespace Test.ViewModel
         private void DeleteMapsPin(object s)
         {
            System.Diagnostics.Debug.WriteLine("parameter: " + s);
+        }
+
+        internal async Task RefreshlistAsync()
+        {
+            if (firstappear)
+            {
+                firstappear = false;
+            }
+            else
+            {
+                await GetPinsAsync();
+            }
         }
     }
 }

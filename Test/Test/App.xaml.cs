@@ -8,8 +8,8 @@ namespace Test
         public App()
         {
             InitializeComponent();
-                //MainPage = new NavigationPage( new ConnexionPage() );
-                MainPage = new MasterdetailPage();
+                MainPage = new NavigationPage( new ConnexionPage() );
+                //MainPage = new MasterdetailPage();
         }
 
       

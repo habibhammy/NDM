@@ -29,7 +29,7 @@ namespace Test
         }
         private void Button_EVENEMENT_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new EvenementPage());
+            Navigation.PushAsync(EvenementPage.GetInstance().Result);
         }
     }
 }

@@ -1,11 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Test.View.DechetPage"
-             Title="Ou jeter mes dechets a Metz?">
+             x:Class="Test.View.MentionLegalPage">
     <ContentPage.Content>
-        <WebView Source="https://metz.fr/pages/proprete_urbaine/dechetteries.php">
-
+        <WebView Source="https://drive.google.com/drive/u/0/folders/0BzlmfgpeGBGjTlF5Tk45S2Z1YU0">
+            
         </WebView>
     </ContentPage.Content>
 </ContentPage>

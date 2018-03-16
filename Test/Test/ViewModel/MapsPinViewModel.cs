@@ -3,12 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Test.Model;
 
-namespace Test.Model
+namespace Test.ViewModel
 {
-    public class MapsPin
+    public class MapsPinViewModel
     {
-        public long Id { get; set; }
+        public long Id
+        {
+            get;
+            set;
+        }
         public String Titre { get; set; }
 
         public double Longitude { get; set; }
@@ -17,7 +22,13 @@ namespace Test.Model
 
         public String Description { get; set; }
 
-        public MapsPin()
+        public String SomeofDescription { get; set; }
+
+        public String Image { get; set; }
+
+        public String moreminus { get; set; }
+
+        public MapsPinViewModel()
         {
             
         }
@@ -38,8 +49,20 @@ namespace Test.Model
                         "\"titre\" : " + "\"" + Titre + "\" ," +
                         "\"longitude\" : " + "\"" + Longitude + "\" ," +
                         "\"latitude\" : " + "\"" + Latitude + "\" ," +
-                        "\"description\" : " + "\"" + Description + "\"" +
+                        "\"description\" : " + "\"" + Description + "\" ," +
                     "}";
+        }
+
+        internal MapsPin GetMapPin()
+        {
+            return new MapsPin
+            {
+                Titre = Titre,
+                Id = Id,
+                Description = Description,
+                Latitude = Latitude,
+                Longitude = Longitude
+            };
         }
     }
 }

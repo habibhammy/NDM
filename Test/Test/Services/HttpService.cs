@@ -22,6 +22,10 @@ namespace Test.Services
         private static string getmappin = "maps/";
         private static string deletemappin = "maps/delete/";
 
+        private static string addevent = "events/add";
+        private static string getevent = "events/";
+        private static string deleteevent = "events/delete/";
+
 
         private static string URL = "http://" + Properties.Resources.HostName + ":" + Properties.Resources.HostPort + "/xamarin/";
         private HttpClient http;
@@ -32,6 +36,35 @@ namespace Test.Services
         {
              http = new HttpClient();
             
+        }
+
+        public async Task<List<Events>> GetAllEventsAsync()
+        {
+            System.Diagnostics.Debug.WriteLine("Here we start ");
+            http.BaseAddress = new Uri(URL + getevent);
+            System.Diagnostics.Debug.WriteLine("URI = " + URL + getevent);
+            var response = await http.GetAsync(http.BaseAddress);
+            response.EnsureSuccessStatusCode();
+            string resultat = response.Content.ReadAsStringAsync().Result;
+            System.Diagnostics.Debug.WriteLine("resultat = " + resultat);
+
+            /*
+             new Pin
+            {
+                Position = new Position(49.108223, 6.181507),
+                Label = "Centre Pompidou!",
+                Address ="Le plus grand centre commercial au centre ville de Metz !! "
+            };
+             */
+            List<Events> allPins = JsonConvert.DeserializeObject<List<Events>>(resultat,
+                new JsonSerializerSettings
+                {
+                    NullValueHandling = NullValueHandling.Ignore,
+                    MissingMemberHandling = MissingMemberHandling.Ignore
+                });
+
+
+            return allPins;
         }
 
         public static HttpService GetHttpService()
@@ -63,6 +96,25 @@ namespace Test.Services
             response = await http.PutAsync(http.BaseAddress, contents);
             response.EnsureSuccessStatusCode();
             System.Diagnostics.Debug.WriteLine("SaveUser : response code after put = " + response.StatusCode);
+        }
+
+        public async Task DeleteEventsAsync(Events events)
+        {
+            
+            http.BaseAddress = new Uri(URL + deleteevent + events.Id);
+            //System.Diagnostics.Debug.WriteLine("request = "+ http.r(http.BaseAddress, content).);
+            var response = await http.DeleteAsync(http.BaseAddress);
+            response.EnsureSuccessStatusCode();
+        }
+
+        public async Task AddEventsAsync(Events events)
+        {
+            string value = events.GetJson();
+            var contents = new StringContent(value, Encoding.UTF8, "application/JSON");
+            http.BaseAddress = new Uri(URL + addevent);
+            System.Diagnostics.Debug.WriteLine("request = " + value);
+            var response = await http.PostAsync(http.BaseAddress, contents);
+            response.EnsureSuccessStatusCode();
         }
 
         public async Task UpdateUser(Users user)
@@ -118,31 +170,8 @@ namespace Test.Services
 
         public async Task<List<Pin>> GetAllPinsAsync()
         {
-            System.Diagnostics.Debug.WriteLine("Here we start ");
-            http.BaseAddress = new Uri(URL + getmappin);
-            System.Diagnostics.Debug.WriteLine("URI = " + URL + getmappin);
-            var response = await http.GetAsync(http.BaseAddress);
-            response.EnsureSuccessStatusCode();
-            string resultat = response.Content.ReadAsStringAsync().Result;
-            System.Diagnostics.Debug.WriteLine("resultat = " + resultat);
-
-            /*
-             new Pin
-            {
-                Position = new Position(49.108223, 6.181507),
-                Label = "Centre Pompidou!",
-                Address ="Le plus grand centre commercial au centre ville de Metz !! "
-            };
-             */
-            List<MapsPin> allPins = JsonConvert.DeserializeObject<List<MapsPin>>(resultat,
-                new JsonSerializerSettings
-                {
-                    NullValueHandling = NullValueHandling.Ignore,
-                    MissingMemberHandling = MissingMemberHandling.Ignore
-                });
-            
-
-            return GetPins(allPins);
+           List<MapsPin> allPins = await this.GetAllMapsPinsAsync();
+           return GetPins(allPins);
         }
 
         public async Task<List<MapsPin>> GetAllMapsPinsAsync()
@@ -179,8 +208,8 @@ namespace Test.Services
             string value = p.GetJson();
             var contents = new StringContent(value, Encoding.UTF8, "application/JSON");
             http.BaseAddress = new Uri(URL + addmappin);
-            //System.Diagnostics.Debug.WriteLine("request = "+ http.r(http.BaseAddress, content).);
-            var response = await http.PutAsync(http.BaseAddress, contents);
+            System.Diagnostics.Debug.WriteLine("request = "+value);
+            var response = await http.PostAsync(http.BaseAddress, contents);
             response.EnsureSuccessStatusCode();
         }
 

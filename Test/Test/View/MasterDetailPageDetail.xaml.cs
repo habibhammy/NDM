@@ -29,9 +29,10 @@ namespace Test.View
             CartePage page = await CartePage.GetInstance();
             await Navigation.PushAsync(page);
         }
-        private void Button_EVENEMENT_Clicked(object sender, EventArgs e)
+        private async void Button_EVENEMENT_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new EvenementPage());
+            EvenementPage evp = await EvenementPage.GetInstance();
+            await Navigation.PushAsync(evp);
         }
 
         

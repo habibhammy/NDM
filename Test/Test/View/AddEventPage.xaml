@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Test.View.AddEventPage"
+             BackgroundImage="background.png"
+             Title="Ajouter un Evenement">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="BoxViewStyle" TargetType="BoxView">
+                <Setter Property="WidthRequest" Value="700"/>
+                <Setter Property="HeightRequest" Value="20"/>
+                <Setter Property="VerticalOptions" Value="StartAndExpand"/>
+                <Setter Property="HorizontalOptions" Value="StartAndExpand"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <ContentView Padding="0,0,0,50" 
+                     WidthRequest="400"
+                     HeightRequest="250"
+                     VerticalOptions="CenterAndExpand"
+                     HorizontalOptions="CenterAndExpand">
+            <Frame OutlineColor="Accent"
+                   Padding="0,0,0,20">
+                <StackLayout>
+                    <BoxView Style="{DynamicResource BoxViewStyle}"
+                             BackgroundColor="#CEC638"/>
+                    <StackLayout Padding="20">
+                        <Entry Placeholder="Nom *"
+                               Text="{Binding Nom}"
+                               TextColor="#81610C"
+                               VerticalOptions="CenterAndExpand" 
+                               HorizontalOptions="CenterAndExpand"
+                               WidthRequest="250"
+                               PlaceholderColor="#81610C"/>
+
+                        <StackLayout VerticalOptions="CenterAndExpand" 
+                                       HorizontalOptions="CenterAndExpand"
+                                         Orientation="Horizontal">
+                            <Label Text="Date *"
+                                       TextColor="#81610C"
+                                       VerticalOptions="CenterAndExpand" 
+                                       HorizontalOptions="CenterAndExpand"
+                                        WidthRequest="80"
+                                       />
+                            <DatePicker
+                                    Date ="{Binding Date}"
+                                   TextColor="#81610C"
+                                   VerticalOptions="CenterAndExpand" 
+                                   HorizontalOptions="CenterAndExpand"
+                                   WidthRequest="100"
+                                   />
+                        </StackLayout>
+                        <Entry Placeholder="Description *"
+                               WidthRequest="250"
+                               PlaceholderColor="#81610C"
+                               Text="{Binding Description}"
+                               TextColor="#81610C"
+                               VerticalOptions="CenterAndExpand" 
+                               HorizontalOptions="CenterAndExpand"/>
+                        <Button Text="Ajouter"
+                                VerticalOptions="EndAndExpand" 
+                                HorizontalOptions="CenterAndExpand"
+                                Clicked="Button_Ajouter_Clicked"
+                                FontSize="20"
+                                BackgroundColor="#246500"
+                                TextColor="#FFFFFF"
+                                WidthRequest="150"
+                                HeightRequest="50"/>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+        </ContentView>
+    </ContentPage.Content>
+</ContentPage>

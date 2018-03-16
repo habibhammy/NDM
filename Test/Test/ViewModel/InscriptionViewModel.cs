@@ -18,7 +18,7 @@ namespace Test.ViewModel
     class InscriptionViewModel : INotifyPropertyChanged
     {
         char[] caractereSpeciaux = { '@', '\\', '&', '"', '+', '-', '_', ')', '=' };
-        private string login = "Login";
+        private string login;
         public string Login
         {
             get { return login; }
@@ -37,7 +37,7 @@ namespace Test.ViewModel
             }
         }
 
-        private string password = "Password";
+        private string password;
         public string Password
         {
             get { return password; }
@@ -58,7 +58,7 @@ namespace Test.ViewModel
             }
         }
 
-        private string confirme_Password = "Password";
+        private string confirme_Password;
         public string Confirme_Password
         {
             get { return confirme_Password; }
@@ -79,7 +79,7 @@ namespace Test.ViewModel
             }
         }
 
-        private string nom = "Nom";
+        private string nom;
         public string Nom
         {
             get { return nom; }
@@ -90,7 +90,7 @@ namespace Test.ViewModel
             }
         }
 
-        private string prenom = "Prénom";
+        private string prenom;
         public string Prenom
         {
             get { return prenom; }
@@ -101,7 +101,7 @@ namespace Test.ViewModel
             }
         }
 
-        private string email = "email@exemple.com";
+        private string email;
         public string Email
         {
             get { return email; }
@@ -120,7 +120,7 @@ namespace Test.ViewModel
             }
         }
 
-        private DateTime birthDate = new DateTime(1950,01,01);
+        private DateTime birthDate;
         
         public DateTime BirthDate
         {
@@ -132,7 +132,7 @@ namespace Test.ViewModel
             }
         }
 
-        private string email_Universitaire = "email@etu.univ-lorraine.com";
+        private string email_Universitaire;
         public string Email_Universitaire
         {
             get { return email_Universitaire; }
@@ -152,7 +152,7 @@ namespace Test.ViewModel
             }
         }
 
-        private Color comfirme_Password_error = Color.Default;
+        private Color comfirme_Password_error;
         public Color Comfirme_Password_error
         {
             get { return comfirme_Password_error; }
@@ -247,7 +247,7 @@ namespace Test.ViewModel
             u.Birthdate = birthDate;
             u.Email = email;
             u.Emailuniversitaire = eu?email_Universitaire:null;
-            bool b = await userexistAsync(u);
+            bool b = await UserexistAsync(u);
             if (!b)
             {
                 await HttpService.GetHttpService().SaveUser(u);
@@ -258,7 +258,7 @@ namespace Test.ViewModel
             }
         }
 
-        private async Task<bool> userexistAsync(Users u)
+        private async Task<bool> UserexistAsync(Users u)
         {
             List<Users> alluser = await HttpService.GetHttpService().GetAllUsersAsync();
             foreach(Users us in alluser)

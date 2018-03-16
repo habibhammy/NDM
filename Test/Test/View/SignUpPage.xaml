@@ -1,71 +1,122 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Test.View.SignUpPage">
+             x:Class="Test.View.SignUpPage"
+             BackgroundImage="background.png">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="BoxViewStyle" TargetType="BoxView">
+                <Setter Property="WidthRequest" Value="700"/>
+                <Setter Property="HeightRequest" Value="20"/>
+                <Setter Property="VerticalOptions" Value="StartAndExpand"/>
+                <Setter Property="HorizontalOptions" Value="StartAndExpand"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>  
     <ContentPage.Content>
-        <StackLayout>
-            <Entry Placeholder="Login"
-                   Text="{Binding Login}"
-                   StyleId="loginentry"
-                   TextColor="{Binding Login_color}"
-                   VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand"/>
-            <Entry Placeholder="Password"
+        <ContentView Padding="0,0,0,50" 
+                     WidthRequest="700"
+                     HeightRequest="600"
+                     VerticalOptions="CenterAndExpand"
+                     HorizontalOptions="CenterAndExpand">
+            <Frame OutlineColor="Accent"
+                   Padding="0,0,0,20">
+                <StackLayout>
+                    <BoxView Style="{DynamicResource BoxViewStyle}"
+                             BackgroundColor="#CEC638"/>
+                    <Image Source="logo.png"
+                           WidthRequest="175"
+                           HeightRequest="175"
+                           VerticalOptions="StartAndExpand" 
+                           HorizontalOptions="CenterAndExpand"/>
+                    <StackLayout>
+                        <Entry Placeholder="Login *"
+                               Text="{Binding Login}"
+                               TextColor="{Binding Login_color}"
+                               VerticalOptions="CenterAndExpand" 
+                               HorizontalOptions="CenterAndExpand"
+                               WidthRequest="250"
+                               PlaceholderColor="#81610C"/>
+                        <StackLayout Orientation="Horizontal">
+                            <Entry Placeholder="Password *"
                    IsPassword="True"
                    Text="{Binding Password}"
-                   StyleId="passentry"
                    TextColor="{Binding Password_color}"
                    VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand"/>
-            <Entry Placeholder="Confirme Password"
+                HorizontalOptions="CenterAndExpand"
+                   WidthRequest="250"
+                   PlaceholderColor="#81610C"/>
+                            <Entry Placeholder="Confirme Password *"
+                   WidthRequest="250"
+                   PlaceholderColor="#81610C"
                    IsPassword="True"
                    Text="{Binding Confirme_Password}"
-                   StyleId="loginentry"
                    TextColor="{Binding Comfirme_Password_error}"
                    VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand"/>
-            <Entry Placeholder="Nom"
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Entry Placeholder="Nom"
+                   WidthRequest="250"
+                   TextColor="#81610C"
                    Text="{Binding Nom}"
-                   StyleId="nomentry"
                    VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand"/>
-            <Entry Placeholder="Prénom"
+                            <Entry Placeholder="Prénom"
+                   WidthRequest="250"
+                   TextColor="#81610C"
                    Text="{Binding Prenom}"
-                   StyleId="loginentry"
                    VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand"/>
-            <Entry Placeholder="Email"
-                   Text="{Binding Email}"
-                   StyleId="loginentry"
-                   TextColor="{Binding Email_color}"
-                   VerticalOptions="CenterAndExpand" 
-                   HorizontalOptions="CenterAndExpand"/>
-            <DatePicker Date="{Binding BirthDate}"
-                        Format="dd-MM-yyyy"
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Picker x:Name="picker" Title="Étes-vous étudiant à l'université de lorraine? *"
                         VerticalOptions="CenterAndExpand" 
-                        HorizontalOptions="CenterAndExpand"/>
-            <Picker x:Name="picker" Title="Étes-vous étudiant à l'université de lorraine?"
-                        VerticalOptions="CenterAndExpand" 
-                        HorizontalOptions="CenterAndExpand"
+                        HorizontalOptions="CenterAndExpand" WidthRequest="250"
+                   TextColor="#81610C"
                         SelectedIndex="1">
-                <Picker.ItemsSource>
-                    <x:Array Type="{x:Type x:Boolean}">
-                        <x:Boolean>True</x:Boolean>
-                        <x:Boolean>False</x:Boolean>
-                    </x:Array>
-                </Picker.ItemsSource>
-             </Picker>
-            <Entry Placeholder="Email Universitaire"
+                                <Picker.ItemsSource>
+                                    <x:Array Type="{x:Type x:Boolean}">
+                                        <x:Boolean>True</x:Boolean>
+                                        <x:Boolean>False</x:Boolean>
+                                    </x:Array>
+                                </Picker.ItemsSource>
+                            </Picker>
+                            <Entry Placeholder="Email Universitaire"
+                   WidthRequest="250"
+                   PlaceholderColor="#81610C"
                    IsVisible="{Binding Source={x:Reference picker}}"
                    Text="{Binding Email_Universitaire}"
-                   StyleId="loginentry"
                     TextColor="{Binding Email_Universitaire_color}"
                    VerticalOptions="CenterAndExpand" 
                    HorizontalOptions="CenterAndExpand"/>
-            <Button Text="Sign Up"
-                    VerticalOptions="CenterAndExpand" 
+                        </StackLayout>
+
+                        <Entry Placeholder="Email *"
+                   WidthRequest="250"
+                   PlaceholderColor="#81610C"
+                   Text="{Binding Email}"
+                   TextColor="{Binding Email_color}"
+                   VerticalOptions="CenterAndExpand" 
+                   HorizontalOptions="CenterAndExpand"/>
+                        <DatePicker Date="{Binding BirthDate}"
+                        Format="dd-MM-yyyy"
+                        VerticalOptions="CenterAndExpand" 
+                   WidthRequest="250"
+                   TextColor="#81610C"
+                        HorizontalOptions="CenterAndExpand"/>
+                        <Button Text="Sign Up"
+                    VerticalOptions="EndAndExpand" 
                     HorizontalOptions="CenterAndExpand"
-                    Clicked="Button_Sign_Up_Clicked"/>
-        </StackLayout>
+                    Clicked="Button_Sign_Up_Clicked"
+                    FontSize="20"
+                    BackgroundColor="#246500"
+                    TextColor="#FFFFFF"
+                    WidthRequest="150"
+                    HeightRequest="50"/>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+        </ContentView>
     </ContentPage.Content>
 </ContentPage>
