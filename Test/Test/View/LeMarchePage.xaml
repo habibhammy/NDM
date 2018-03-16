@@ -5,9 +5,137 @@
              Title="Le Marché">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="LeMarchePage"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <ListView x:Name="listArticles"
+                      SeparatorVisibility="None"
+                      HasUnevenRows="true"
+                      ItemsSource="{Binding articles}"
+                      IsPullToRefreshEnabled="True">
+                <ListView.Header>
+                    <StackLayout Padding="10">
+                        <Button Text="Ajouter"
+                                VerticalOptions="CenterAndExpand" 
+                                HorizontalOptions="CenterAndExpand"
+                                Clicked="Button_Ajouter_Clicked"
+                                FontSize="20"
+                                BackgroundColor="#246500"
+                                TextColor="#FFFFFF"
+                                WidthRequest="150"
+                                HeightRequest="50"/>
+                    </StackLayout>
+                </ListView.Header>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell >
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="700"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <ContentView Padding="5" 
+                                         Margin="0,05,0,05"
+                                         Grid.Column="1"
+                                         Grid.Row="0">
+                                    <Frame OutlineColor="Accent"
+                                       Padding="10">
+                                        <StackLayout Orientation="Horizontal">
+                                            <Image Source="marche.png"
+                                         WidthRequest="100"
+                                         HeightRequest="100" />
+                                            <StackLayout Padding="20">
+                                                <StackLayout Orientation="Horizontal">
+                                                    <StackLayout Orientation="Horizontal">
+                                                        <Label VerticalOptions="FillAndExpand" 
+                                                       VerticalTextAlignment="Center" 
+                                                       Text="Nom de l'article: " 
+                                                       FontAttributes="Bold"
+                                                       FontSize="18"
+                                                       WidthRequest="110"
+                                                           MinimumWidthRequest="110"/>
+                                                        <Label VerticalOptions="FillAndExpand" 
+                                                   VerticalTextAlignment="Center" 
+                                                   Text="{Binding Nom}" 
+                                                   FontSize="24"/>
+                                                    </StackLayout>
+                                                    <StackLayout Orientation="Horizontal">
+                                                        <Label VerticalOptions="FillAndExpand" 
+                                                               HorizontalOptions="StartAndExpand"
+                                                       VerticalTextAlignment="Center" 
+                                                       Text="Prix : " 
+                                                       FontAttributes="Bold"
+                                                       FontSize="18"
+                                                       WidthRequest="110"
+                                                           MinimumWidthRequest="70"/>
+                                                        <Label VerticalOptions="StartAndExpand" 
+                                                   VerticalTextAlignment="Center" 
+                                                   Text="{Binding Prix}" 
+                                                   FontSize="16"/>
+                                                    </StackLayout>
+                                                </StackLayout>
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label VerticalOptions="FillAndExpand" 
+                                                       VerticalTextAlignment="Center" 
+                                                       Text="Description : " 
+                                                       FontAttributes="Bold"
+                                                       FontSize="18"
+                                                       WidthRequest="110"
+                                                           MinimumWidthRequest="110"/>
+                                                    <Label VerticalOptions="FillAndExpand" 
+                                                   VerticalTextAlignment="Center" 
+                                                   Text="{Binding SomeofDescription}" 
+                                                   FontSize="24"/>
+                                                </StackLayout>
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label VerticalOptions="FillAndExpand" 
+                                                       VerticalTextAlignment="Center" 
+                                                       Text="Publier par : " 
+                                                       FontAttributes="Bold"
+                                                       FontSize="18"
+                                                       WidthRequest="110"
+                                                           MinimumWidthRequest="110"/>
+                                                    <Label VerticalOptions="FillAndExpand" 
+                                                   VerticalTextAlignment="Center" 
+                                                   Text="{Binding NomVendeur}" 
+                                                   FontSize="16"/>
+                                                </StackLayout>
+                                            </StackLayout>
+                                            <StackLayout HorizontalOptions="EndAndExpand">
+                                                <Image Source="{Binding Moreminus}"
+                                                   WidthRequest="30"
+                                                   HeightRequest="30" 
+                                                       VerticalOptions="CenterAndExpand">
+                                                    <Image.GestureRecognizers>
+                                                        <TapGestureRecognizer
+                                                                Tapped="More_Clicked"
+                                                            CommandParameter="{Binding .}"/>
+                                                        <!--Command="{Binding BindingContext.TapCommand, Source={x:Reference listPins}"
+                                                                CommandParameter="{Binding .}"-->
+                                                    </Image.GestureRecognizers>
+                                                </Image>
+                                                <Image Source="delete.png"
+                                                   WidthRequest="30"
+                                                   HeightRequest="30"
+                                                       VerticalOptions="CenterAndExpand">
+                                                    <Image.GestureRecognizers>
+                                                        <TapGestureRecognizer
+                                                                Tapped="Delete_Clicked"
+                                                            CommandParameter="{Binding .}"/>
+                                                        <!--Command="{Binding BindingContext.TapCommand, Source={x:Reference listPins}"
+                                                                CommandParameter="{Binding .}"-->
+                                                    </Image.GestureRecognizers>
+                                                </Image>
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </Frame>
+                                </ContentView>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

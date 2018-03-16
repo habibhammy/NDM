@@ -5,9 +5,67 @@
              Title="Définition">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <ListView x:Name="listDefs"
+                      SeparatorVisibility="None"
+                      HasUnevenRows="true"
+                      ItemsSource="{Binding Defs}"
+                      IsPullToRefreshEnabled="True">
+                <ListView.Header>
+                    <StackLayout Padding="10">
+                        <!--<Button Text="Ajouter"
+                                VerticalOptions="CenterAndExpand" 
+                                HorizontalOptions="CenterAndExpand"
+                                Clicked="Button_Ajouter_Clicked"
+                                FontSize="20"
+                                BackgroundColor="#246500"
+                                TextColor="#FFFFFF"
+                                WidthRequest="150"
+                                HeightRequest="50"/>-->
+                    </StackLayout>
+                </ListView.Header>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell >
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="500"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <ContentView Padding="5" 
+                                         Margin="0,05,0,05"
+                                         Grid.Column="1"
+                                         Grid.Row="0">
+                                    <Frame OutlineColor="Accent"
+                                       Padding="10">
+                                        <StackLayout Orientation="Horizontal">
+                                            <Image Source="mark.png"
+                                         WidthRequest="50"
+                                         HeightRequest="50" />
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label VerticalOptions="FillAndExpand" 
+                                                       VerticalTextAlignment="Center" 
+                                                       Text="{Binding Terme}" 
+                                                       FontAttributes="Bold"
+                                                       FontSize="22"
+                                                       WidthRequest="110"
+                                                       MinimumWidthRequest="110"/>
+                                                <Label VerticalOptions="FillAndExpand" 
+                                                       VerticalTextAlignment="Center" 
+                                                       Text="{Binding Def}" 
+                                                       FontSize="16"/>
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </Frame>
+                                </ContentView>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

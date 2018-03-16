@@ -38,11 +38,19 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\Article.cs" />
     <Compile Include="Model\CurrentUser.cs" />
+    <Compile Include="Model\Definition.cs" />
+    <Compile Include="Model\Echange.cs" />
     <Compile Include="Model\Events.cs" />
     <Compile Include="Model\MapsPin.cs" />
     <Compile Include="ViewModel\AddEventViewModel.cs" />
     <Compile Include="ViewModel\AddPinViewModel.cs" />
+    <Compile Include="ViewModel\ArticlePageViewModel.cs" />
+    <Compile Include="ViewModel\ArticleViewModel.cs" />
+    <Compile Include="ViewModel\DefintionVIewModel.cs" />
+    <Compile Include="ViewModel\EchangePageViewModel.cs" />
+    <Compile Include="ViewModel\EchangeViewModel.cs" />
     <Compile Include="ViewModel\EventsPageVIewModel.cs" />
     <Compile Include="ViewModel\EventsViewModel.cs" />
     <Compile Include="ViewModel\MapsPinViewModel.cs" />

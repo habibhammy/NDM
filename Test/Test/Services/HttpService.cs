@@ -26,6 +26,14 @@ namespace Test.Services
         private static string getevent = "events/";
         private static string deleteevent = "events/delete/";
 
+        private static string addechange = "echange/add";
+        private static string getechange = "echange/";
+        private static string deleteechange = "echange/delete/";
+
+        private static string addarticle = "article/add";
+        private static string getarticle = "article/";
+        private static string deletearticle = "article/delete/";
+
 
         private static string URL = "http://" + Properties.Resources.HostName + ":" + Properties.Resources.HostPort + "/xamarin/";
         private HttpClient http;
@@ -36,35 +44,6 @@ namespace Test.Services
         {
              http = new HttpClient();
             
-        }
-
-        public async Task<List<Events>> GetAllEventsAsync()
-        {
-            System.Diagnostics.Debug.WriteLine("Here we start ");
-            http.BaseAddress = new Uri(URL + getevent);
-            System.Diagnostics.Debug.WriteLine("URI = " + URL + getevent);
-            var response = await http.GetAsync(http.BaseAddress);
-            response.EnsureSuccessStatusCode();
-            string resultat = response.Content.ReadAsStringAsync().Result;
-            System.Diagnostics.Debug.WriteLine("resultat = " + resultat);
-
-            /*
-             new Pin
-            {
-                Position = new Position(49.108223, 6.181507),
-                Label = "Centre Pompidou!",
-                Address ="Le plus grand centre commercial au centre ville de Metz !! "
-            };
-             */
-            List<Events> allPins = JsonConvert.DeserializeObject<List<Events>>(resultat,
-                new JsonSerializerSettings
-                {
-                    NullValueHandling = NullValueHandling.Ignore,
-                    MissingMemberHandling = MissingMemberHandling.Ignore
-                });
-
-
-            return allPins;
         }
 
         public static HttpService GetHttpService()
@@ -96,25 +75,6 @@ namespace Test.Services
             response = await http.PutAsync(http.BaseAddress, contents);
             response.EnsureSuccessStatusCode();
             System.Diagnostics.Debug.WriteLine("SaveUser : response code after put = " + response.StatusCode);
-        }
-
-        public async Task DeleteEventsAsync(Events events)
-        {
-            
-            http.BaseAddress = new Uri(URL + deleteevent + events.Id);
-            //System.Diagnostics.Debug.WriteLine("request = "+ http.r(http.BaseAddress, content).);
-            var response = await http.DeleteAsync(http.BaseAddress);
-            response.EnsureSuccessStatusCode();
-        }
-
-        public async Task AddEventsAsync(Events events)
-        {
-            string value = events.GetJson();
-            var contents = new StringContent(value, Encoding.UTF8, "application/JSON");
-            http.BaseAddress = new Uri(URL + addevent);
-            System.Diagnostics.Debug.WriteLine("request = " + value);
-            var response = await http.PostAsync(http.BaseAddress, contents);
-            response.EnsureSuccessStatusCode();
         }
 
         public async Task UpdateUser(Users user)
@@ -237,5 +197,150 @@ namespace Test.Services
 
             return list;
         }
+
+        public async Task<List<Events>> GetAllEventsAsync()
+        {
+            System.Diagnostics.Debug.WriteLine("Here we start ");
+            http.BaseAddress = new Uri(URL + getevent);
+            System.Diagnostics.Debug.WriteLine("URI = " + URL + getevent);
+            var response = await http.GetAsync(http.BaseAddress);
+            response.EnsureSuccessStatusCode();
+            string resultat = response.Content.ReadAsStringAsync().Result;
+            System.Diagnostics.Debug.WriteLine("resultat = " + resultat);
+
+            /*
+             new Pin
+            {
+                Position = new Position(49.108223, 6.181507),
+                Label = "Centre Pompidou!",
+                Address ="Le plus grand centre commercial au centre ville de Metz !! "
+            };
+             */
+            List<Events> allPins = JsonConvert.DeserializeObject<List<Events>>(resultat,
+                new JsonSerializerSettings
+                {
+                    NullValueHandling = NullValueHandling.Ignore,
+                    MissingMemberHandling = MissingMemberHandling.Ignore
+                });
+
+
+            return allPins;
+        }
+
+        public async Task DeleteEventsAsync(Events events)
+        {
+
+            http.BaseAddress = new Uri(URL + deleteevent + events.Id);
+            //System.Diagnostics.Debug.WriteLine("request = "+ http.r(http.BaseAddress, content).);
+            var response = await http.DeleteAsync(http.BaseAddress);
+            response.EnsureSuccessStatusCode();
+        }
+
+        public async Task AddEventsAsync(Events events)
+        {
+            string value = events.GetJson();
+            var contents = new StringContent(value, Encoding.UTF8, "application/JSON");
+            http.BaseAddress = new Uri(URL + addevent);
+            System.Diagnostics.Debug.WriteLine("request = " + value);
+            var response = await http.PostAsync(http.BaseAddress, contents);
+            response.EnsureSuccessStatusCode();
+        }
+
+        public async Task<List<Echange>> GetAllEchangesAsync()
+        {
+            System.Diagnostics.Debug.WriteLine("Here we start ");
+            http.BaseAddress = new Uri(URL + getechange);
+            System.Diagnostics.Debug.WriteLine("URI = " + URL + getechange);
+            var response = await http.GetAsync(http.BaseAddress);
+            response.EnsureSuccessStatusCode();
+            string resultat = response.Content.ReadAsStringAsync().Result;
+            System.Diagnostics.Debug.WriteLine("resultat = " + resultat);
+
+            /*
+             new Pin
+            {
+                Position = new Position(49.108223, 6.181507),
+                Label = "Centre Pompidou!",
+                Address ="Le plus grand centre commercial au centre ville de Metz !! "
+            };
+             */
+            List<Echange> allPins = JsonConvert.DeserializeObject<List<Echange>>(resultat,
+                new JsonSerializerSettings
+                {
+                    NullValueHandling = NullValueHandling.Ignore,
+                    MissingMemberHandling = MissingMemberHandling.Ignore
+                });
+
+
+            return allPins;
+        }
+
+        public async Task DeleteEchangesAsync(Echange events)
+        {
+
+            http.BaseAddress = new Uri(URL + deleteechange + events.Id);
+            //System.Diagnostics.Debug.WriteLine("request = "+ http.r(http.BaseAddress, content).);
+            var response = await http.DeleteAsync(http.BaseAddress);
+            response.EnsureSuccessStatusCode();
+        }
+
+        public async Task AddEchangesAsync(Echange events)
+        {
+            string value = events.GetJson();
+            var contents = new StringContent(value, Encoding.UTF8, "application/JSON");
+            http.BaseAddress = new Uri(URL + addechange);
+            System.Diagnostics.Debug.WriteLine("request = " + value);
+            var response = await http.PostAsync(http.BaseAddress, contents);
+            response.EnsureSuccessStatusCode();
+        }
+
+        public async Task<List<Article>> GetAllArticlesAsync()
+        {
+            System.Diagnostics.Debug.WriteLine("Here we start ");
+            http.BaseAddress = new Uri(URL + getarticle);
+            System.Diagnostics.Debug.WriteLine("URI = " + URL + getarticle);
+            var response = await http.GetAsync(http.BaseAddress);
+            response.EnsureSuccessStatusCode();
+            string resultat = response.Content.ReadAsStringAsync().Result;
+            System.Diagnostics.Debug.WriteLine("resultat = " + resultat);
+
+            /*
+             new Pin
+            {
+                Position = new Position(49.108223, 6.181507),
+                Label = "Centre Pompidou!",
+                Address ="Le plus grand centre commercial au centre ville de Metz !! "
+            };
+             */
+            List<Article> allPins = JsonConvert.DeserializeObject<List<Article>>(resultat,
+                new JsonSerializerSettings
+                {
+                    NullValueHandling = NullValueHandling.Ignore,
+                    MissingMemberHandling = MissingMemberHandling.Ignore
+                });
+
+
+            return allPins;
+        }
+
+        public async Task DeleteArticlesAsync(Article events)
+        {
+
+            http.BaseAddress = new Uri(URL + deletearticle + events.Id);
+            //System.Diagnostics.Debug.WriteLine("request = "+ http.r(http.BaseAddress, content).);
+            var response = await http.DeleteAsync(http.BaseAddress);
+            response.EnsureSuccessStatusCode();
+        }
+
+        public async Task AddArticlesAsync(Article events)
+        {
+            string value = events.GetJson();
+            var contents = new StringContent(value, Encoding.UTF8, "application/JSON");
+            http.BaseAddress = new Uri(URL + addarticle);
+            System.Diagnostics.Debug.WriteLine("request = " + value);
+            var response = await http.PostAsync(http.BaseAddress, contents);
+            response.EnsureSuccessStatusCode();
+        }
+
     }
 }

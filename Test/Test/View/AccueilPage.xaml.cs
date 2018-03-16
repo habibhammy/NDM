@@ -15,21 +15,25 @@ namespace Test
             InitializeComponent();
         }
 
-        private void Button_ECHANGE_Clicked(object sender, EventArgs e)
+        private async void Button_ECHANGE_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new EchangePage());
+            EchangePage ev = await EchangePage.GetInstance();
+            await Navigation.PushAsync(ev);
         }
-        private void Button_LE_MARCHE_Clicked(object sender, EventArgs e)
+        private async void Button_LE_MARCHE_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new LeMarchePage());
+            LeMarchePage ev = await LeMarchePage.GetInstance();
+            await Navigation.PushAsync(ev);
         }
-        private void Button_CARTE_Clicked(object sender, EventArgs e)
+        private async void Button_CARTE_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(CartePage.GetInstance().Result);
+            CartePage ev = await CartePage.GetInstance();
+            await Navigation.PushAsync(ev);
         }
-        private void Button_EVENEMENT_Clicked(object sender, EventArgs e)
+        private async void Button_EVENEMENT_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(EvenementPage.GetInstance().Result);
+            EvenementPage ev = await EvenementPage.GetInstance();
+            await Navigation.PushAsync(ev);
         }
     }
 }

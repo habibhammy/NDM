@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Test.View.MentionLegalPage">
     <ContentPage.Content>
-        <WebView Source="https://drive.google.com/drive/u/0/folders/0BzlmfgpeGBGjTlF5Tk45S2Z1YU0">
+        <WebView Source="">
             
         </WebView>
     </ContentPage.Content>

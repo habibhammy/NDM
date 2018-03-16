@@ -5,9 +5,123 @@
              Title="Echange">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="EchangePage"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <ListView x:Name="listEchanges"
+                      SeparatorVisibility="None"
+                      HasUnevenRows="true"
+                      ItemsSource="{Binding echanges}"
+                      IsPullToRefreshEnabled="True">
+                <ListView.Header>
+                    <StackLayout Padding="10">
+                        <Button Text="Ajouter"
+                                VerticalOptions="CenterAndExpand" 
+                                HorizontalOptions="CenterAndExpand"
+                                Clicked="Button_Ajouter_Clicked"
+                                FontSize="20"
+                                BackgroundColor="#246500"
+                                TextColor="#FFFFFF"
+                                WidthRequest="150"
+                                HeightRequest="50"/>
+                    </StackLayout>
+                </ListView.Header>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell >
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="700"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <ContentView Padding="5" 
+                                         Margin="0,05,0,05"
+                                         Grid.Column="1"
+                                         Grid.Row="0">
+                                    <Frame OutlineColor="Accent"
+                                       Padding="10">
+                                        <StackLayout Orientation="Horizontal">
+                                            <Image Source="echange.png"
+                                         WidthRequest="150"
+                                         HeightRequest="150" />
+                                            <StackLayout>
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label VerticalOptions="FillAndExpand" 
+                                                       VerticalTextAlignment="Center" 
+                                                       Text="Offre : " 
+                                                       FontAttributes="Bold"
+                                                       FontSize="18"
+                                                       WidthRequest="110"
+                                                           MinimumWidthRequest="110"/>
+                                                    <Label VerticalOptions="FillAndExpand" 
+                                                   VerticalTextAlignment="Center" 
+                                                   Text="{Binding Offre}" 
+                                                   FontSize="24"/>
+                                                </StackLayout>
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label VerticalOptions="FillAndExpand" 
+                                                       VerticalTextAlignment="Center" 
+                                                       Text="Demande : " 
+                                                       FontAttributes="Bold"
+                                                       FontSize="18"
+                                                       WidthRequest="110"
+                                                           MinimumWidthRequest="110"/>
+                                                    <Label VerticalOptions="FillAndExpand" 
+                                                   VerticalTextAlignment="Center" 
+                                                   Text="{Binding Demande}" 
+                                                   FontSize="16"/>
+                                                </StackLayout>
+
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label VerticalOptions="FillAndExpand" 
+                                                       VerticalTextAlignment="Center" 
+                                                       Text="Publier par : " 
+                                                       FontAttributes="Bold"
+                                                       FontSize="18"
+                                                       WidthRequest="110"
+                                                           MinimumWidthRequest="110"/>
+                                                    <Label VerticalOptions="FillAndExpand" 
+                                                   VerticalTextAlignment="Center" 
+                                                   Text="{Binding NomPosteur}" 
+                                                   FontSize="16"/>
+                                                </StackLayout>
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label VerticalOptions="FillAndExpand" 
+                                                       VerticalTextAlignment="Center" 
+                                                       Text="Statut : " 
+                                                       FontAttributes="Bold"
+                                                       FontSize="18"
+                                                       WidthRequest="110"
+                                                           MinimumWidthRequest="110"/>
+                                                    <Label VerticalOptions="FillAndExpand" 
+                                                   VerticalTextAlignment="Center" 
+                                                   Text="{Binding NomStatut}" 
+                                                   FontSize="16"/>
+                                                </StackLayout>
+                                            </StackLayout>
+                                            <StackLayout HorizontalOptions="EndAndExpand">
+                                                <Image Source="delete.png"
+                                                   WidthRequest="30"
+                                                   HeightRequest="30"
+                                                       VerticalOptions="CenterAndExpand">
+                                                    <Image.GestureRecognizers>
+                                                        <TapGestureRecognizer
+                                                                Tapped="Delete_Clicked"
+                                                            CommandParameter="{Binding .}"/>
+                                                        <!--Command="{Binding BindingContext.TapCommand, Source={x:Reference listPins}"
+                                                                CommandParameter="{Binding .}"-->
+                                                    </Image.GestureRecognizers>
+                                                </Image>
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </Frame>
+                                </ContentView>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
