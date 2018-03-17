@@ -44,10 +44,11 @@ namespace Test.Model
 
             return "{" +
                         "\"nom\" : " + "\"" + Nom + "\" ," +
-                        "\"date\" : " + "\"" + Date + "\" ," +
-                        "\"responsable\" : " + "\"" + Responsable.GetJSON() + "\" ," +
+                        "\"date\" : " + "\"" + Date.Year+"-"+Date.Month+"-"+Date.Day + "\" ," +
+                        "\"responsable_login\" : " + "\"" + Responsable.Login+ "\" ," +
                         "\"description\" : " + "\"" + Description + "\" ," +
                     "}";
         }
     }
+
 }
